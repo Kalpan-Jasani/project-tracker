@@ -11,10 +11,39 @@ function Entry(name, version, android_version, domain)
 function onSubmit(ev)
 {
     ev.preventDefault();
+    const userList = document.querySelector("#userList");
     if(entryForm.name.value == "")
     {
         const spanText = document.querySelector("#noNameErrorText");
         spanText.style.display = 'inline';
+        return;
     }
+
+    else
+    {
+        const spanText = document.querySelector("#noNameErrorText");
+        spanText.style.display = "none";
+    }
+
+    const entry = new Entry(entryForm.name, entryForm.version, entryForm.android_version, entryForm.domain);
+    const deleteButton = document.createElement("BUTTON");
+    deleteButton.innerHTML = "del";
+    deleteButton.style.display = "none";
+    
+    //creating a text node for the data payload
+    const textNode = document.createTextNode(entry);
+
+    //creating a list item
+    const listItem = document.createElement("LI");
+    listItem.appendChild(textNode);
+    listItem.appendChild(deleteButton);
+
+    listItem.addEventListener("mouseover", function()
+        {
+            deleteButton.style.display = "inline";
+        }
+    )
+    userList.appendChild(listItem);
+
 }
 
