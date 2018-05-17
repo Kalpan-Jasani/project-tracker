@@ -11,3 +11,15 @@ fieldset {
     display: none;
     color: red
 }
+
+ol {
+    list-style-position: inside
+}
+
+li:nth-child(even) {
+    background-color: #bcbcf7b6;
+}
+
+li:hover {
+    background-color: #dddddd
+}

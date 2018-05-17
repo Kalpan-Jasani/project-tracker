@@ -29,6 +29,7 @@ function onSubmit(ev)
     const deleteButton = document.createElement("BUTTON");
     deleteButton.innerHTML = "del";
     deleteButton.style.display = "none";
+    deleteButton.style.float = "right";
     
     //creating a text node for the data payload
     const textNode = document.createTextNode(`${entry.name}`);
