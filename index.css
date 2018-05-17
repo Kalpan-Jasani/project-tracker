@@ -6,3 +6,8 @@ fieldset {
     background-color: #dddddd;
 
 }
+
+#noNameErrorText {
+    display: none;
+    color: red
+}
