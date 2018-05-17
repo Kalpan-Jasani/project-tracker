@@ -43,6 +43,12 @@ function onSubmit(ev)
             deleteButton.style.display = "inline";
         }
     )
+
+    listItem.addEventListener("mouseleave", function()
+        {
+            deleteButton.style.display = "none";
+        }
+    )
     userList.appendChild(listItem);
 
 }
