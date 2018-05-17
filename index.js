@@ -25,13 +25,13 @@ function onSubmit(ev)
         spanText.style.display = "none";
     }
 
-    const entry = new Entry(entryForm.name, entryForm.version, entryForm.android_version, entryForm.domain);
+    const entry = new Entry(entryForm.name.value, entryForm.version.value, entryForm.android_version.value, entryForm.domain.value);
     const deleteButton = document.createElement("BUTTON");
     deleteButton.innerHTML = "del";
     deleteButton.style.display = "none";
     
     //creating a text node for the data payload
-    const textNode = document.createTextNode(entry);
+    const textNode = document.createTextNode(`${entry.name}`);
 
     //creating a list item
     const listItem = document.createElement("LI");
