@@ -1,10 +1,10 @@
-form {
+#entryForm {
     display: inline-block;
+    width: 25rem;
 }
 
 fieldset {
     background-color: #dddddd;
-
 }
 
 #noNameErrorText {
@@ -22,4 +22,8 @@ li:nth-child(even) {
 
 li:hover {
     background-color: #dddddd
+}
+
+li {
+    list-style-type: none;
 }
