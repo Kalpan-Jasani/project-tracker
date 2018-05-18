@@ -49,7 +49,6 @@ const project =
         //we don't account for button to grow bigger than the size of its list item container, as that will only happen on a mouseover event
         //TODO: css handling for that
 
-        debugger;
         //prepend the item in the list
 
         //if this is the first one
@@ -58,7 +57,7 @@ const project =
             this.entryListHTML.appendChild(listItem);
         }
         else
-            this.entryListHTML.insertBefore(this.entryListHTML.firstChild, listItem);
+            this.entryListHTML.insertBefore(listItem, this.entryListHTML.firstChild);
     
         //set listeners for delete button and fav button
         const deleteButton = listItem.querySelector("#delButton");
