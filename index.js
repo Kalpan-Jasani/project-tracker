@@ -29,13 +29,14 @@ const project =
     onSubmit: function(ev)
     {
         ev.preventDefault();
-        const entry = new Entry(entryForm.name.value, entryForm.version.value, entryForm.android_version.value, entryForm.domain.value, entryForm.link.value);
+        const entry = new Entry(entryForm.name.value, entryForm.version.value, entryForm.android_version.value, entryForm.domain.value, entryForm.link.value, ++this.idGenerator);
         
         this.entries.unshift(entry);
         
         const listItem = this.listItemTemplate.cloneNode(true);
         
         listItem.classList.remove("template");
+        listItem.dataset.id = this.idGenerator;
 
         //setting the payload data for the row
         const spanNode = this.createDetail(entry);
@@ -65,7 +66,8 @@ const project =
 
         deleteButton.addEventListener('click', (ev) => 
             {
-                this.onDelete(listItem);
+                listItem.remove();
+                this.onDelete(entry.id);
             }
         );
         favButton.addEventListener('click', (ev) =>
@@ -75,9 +77,21 @@ const project =
         );
     },
 
-    onDelete: function(entry)
+    onDelete: function(id)
     {
-        //TODO: handle deletion
+        //get the entry with the id
+        const entry = this.entries.find((entry) => 
+            {
+                if(entry.id == id)
+                    return true;
+                else
+                    return false;
+            }
+        );
+        let index = this.entries.indexOf(entry);
+
+        //remove the element from the array
+        this.entries.splice(index, 1);
     },
 
     onFavouriteSelected: function(entry)
@@ -122,11 +136,12 @@ project.init();
 
 
 //constructor for user entry objects
-function Entry(name, version, android_version, domain, link)
+function Entry(name, version, android_version, domain, link, id)
 {
     this.name = name;
     this.version = version;
     this.android_version = android_version;
     this.domain = domain;
     this.link = link;
+    this.id = id;
 }
