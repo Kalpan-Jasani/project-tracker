@@ -72,7 +72,12 @@ const project =
         );
         favButton.addEventListener('click', (ev) =>
             {
-                this.onFavouriteSelected(listItem);
+                const starImgHTML = listItem.querySelector("#favStar");
+                if(entry.fav == false)
+                    starImgHTML.style.display = "inline-block";
+                else
+                    starImgHTML.style.display = "none";
+                this.onFavouriteSelected(entry.id);
             }
         );
     },
@@ -94,8 +99,19 @@ const project =
         this.entries.splice(index, 1);
     },
 
-    onFavouriteSelected: function(entry)
+    onFavouriteSelected: function(id)
     {
+        const entry = this.entries.find((entry) =>
+            {
+                if(entry.id == id)
+                    return true;
+                else
+                    return false;
+            }
+        );
+
+        entry.fav = entry.fav? false: true;
+
         //TODO: handle selection of favourite
     },
 
@@ -144,4 +160,5 @@ function Entry(name, version, android_version, domain, link, id)
     this.domain = domain;
     this.link = link;
     this.id = id;
+    this.fav = false;
 }

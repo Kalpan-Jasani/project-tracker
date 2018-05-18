@@ -27,3 +27,17 @@ li:hover {
 li {
     list-style-type: none;
 }
+
+.template
+{
+    display: none;
+}
+
+
+#listItemTemplate .button {
+    margin: 0 0 0 0;
+}
+
+#listItemTemplate #favStar {
+    display: none;
+}
