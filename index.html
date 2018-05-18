@@ -30,7 +30,7 @@
         </fieldset>
     </form>
     <br>
-    <h2 style="display: none;">
+    <h2 id="entryListHeader">
         Entries:
     </h2>
     <div id="entries">
@@ -40,10 +40,16 @@
         <li id="listItemTemplate" class="template">
             <div class="grid-x">
                 <span contenteditable="true" class="cell auto" id="detail">Some long version inclusive text with android version and domain and link and other stuff</span>
-                <span class="cell shrink">
-                    <img id="favStar" src="yellow-star.png" height="40px" width="40px"></img>
-                    <button type="button" class="success button" id="favButton">fav</button>
-                    <button type="button" class="alert button" id="delButton">del</button>
+                <span class="cell shrink" id="controlsForListItem">
+                    
+                    <button type="button" class="button" id="favButton">
+                            <img id="favStar" src="yellow-star.png" height="20px" width="20px"></img>
+                            <img id="favStarOutline" src="yellow-star-outline.png" height="20px" width="20px"></img>
+                    </button>
+                    <button type="button" class="button" id="delButton">
+                            <img id="delImg" src="dustbin.png" height="20px" width="20px"></img>
+
+                    </button>
                 </span>
             </div>
         </li>

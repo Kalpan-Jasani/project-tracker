@@ -38,6 +38,23 @@ const project =
         listItem.classList.remove("template");
         listItem.dataset.id = this.idGenerator;
 
+        //allowing hover listening for each list row (for outlook like controls!)
+        listItem.addEventListener("mouseover", () => 
+            {
+                listItem.querySelector("#controlsForListItem").style.visibility = "visible";
+                
+            }
+        );
+
+        listItem.addEventListener("mouseleave", () => 
+            {
+                listItem.querySelector("#controlsForListItem").style.visibility = "hidden";        
+                if(entry.fav)
+                    listItem.querySelector("#favStar").style.visibility = "visible";
+            }
+            
+        );
+
         //setting the payload data for the row
         const spanNode = this.createDetail(entry);
 
@@ -73,10 +90,18 @@ const project =
         favButton.addEventListener('click', (ev) =>
             {
                 const starImgHTML = listItem.querySelector("#favStar");
+                const starImgOutlineHTML = listItem.querySelector("#favStarOutline");
                 if(entry.fav == false)
+                {
+                    starImgOutlineHTML.style.display = "none";
                     starImgHTML.style.display = "inline-block";
+                }
+                    
                 else
+                {
                     starImgHTML.style.display = "none";
+                    starImgOutlineHTML.style.display = "inline-block";
+                }
                 this.onFavouriteSelected(entry.id);
             }
         );
@@ -121,12 +146,12 @@ const project =
         textSpan.innerHTML = "<b>" + entry.name + ": " + "</b>";
 
         if(entry.version != "")
-            textSpan.innerHTML += ",ver " + entry.version;
-        if(entry.android_version == "")
-            textSpan.innerHTML += ",Android ver " + entry.android_version;
+            textSpan.innerHTML += ", ver " + entry.version;
+        if(entry.android_version != "")
+            textSpan.innerHTML += ", Android ver " + entry.android_version;
 
         if(entry.domain != "")
-            textSpan.innerHTML += ",Domain " + entry.domain;
+            textSpan.innerHTML += ", Domain " + entry.domain;
 
         if(entry.link != "")
         {

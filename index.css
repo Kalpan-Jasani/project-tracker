@@ -1,3 +1,6 @@
+body {
+    margin-left: 1rem;
+}
 #entryForm {
     display: inline-block;
     width: 25rem;
@@ -36,8 +39,17 @@ li {
 
 #listItemTemplate .button {
     margin: 0 0 0 0;
+    padding: 0.5rem 0.1rem;
+    background: none;
+
 }
 
 #listItemTemplate #favStar {
     display: none;
+}
+
+#controlsForListItem
+{
+    visibility: hidden;
+    margin-right: 1rem;
 }
