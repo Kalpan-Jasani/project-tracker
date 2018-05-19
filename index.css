@@ -1,22 +1,15 @@
 body {
-    margin-left: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 #entryForm {
     display: inline-block;
     width: 25rem;
 }
 
-fieldset {
-    background-color: #dddddd;
-}
-
-#noNameErrorText {
-    display: none;
-    color: red
-}
-
 ol {
-    list-style-position: inside
+    list-style-position: inside;
+    margin-left: 0;
 }
 
 li:nth-child(even) {
@@ -52,4 +45,25 @@ li {
 {
     visibility: hidden;
     margin-right: 1rem;
+}
+
+#entryListHeader
+{
+    font-size: 1.5rem;
+}
+
+#mainSpaceDiv
+{
+    height: 3rem;
+}
+
+.button
+{
+    margin: 0 0 0 0;
+}
+
+#listItemTemplate
+{
+    max-height: 50px;
+    transition: max-height 250ms;
 }

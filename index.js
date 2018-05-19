@@ -83,7 +83,12 @@ const project =
 
         deleteButton.addEventListener('click', (ev) => 
             {
-                listItem.remove();
+                listItem.style.maxHeight = "0";
+                setTimeout(() => {
+                    listItem.remove();
+                }, 250);
+
+            
                 this.onDelete(entry.id);
             }
         );
@@ -105,6 +110,8 @@ const project =
                 this.onFavouriteSelected(entry.id);
             }
         );
+        this.entryForm.reset();
+        this.entryForm.name.focus();
     },
 
     onDelete: function(id)
@@ -161,7 +168,7 @@ const project =
             link.innerText = "Project link";
 
             //adding a comma before thr hyperlink
-            textSpan.innerHTML += ",";
+            textSpan.innerHTML += ", ";
 
             //adding anchor, or link, to span
             textSpan.appendChild(link);
