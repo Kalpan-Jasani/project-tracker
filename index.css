@@ -1,0 +1,69 @@
+body {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+#entryForm {
+    display: inline-block;
+    width: 25rem;
+}
+
+ol {
+    list-style-position: inside;
+    margin-left: 0;
+}
+
+li:nth-child(even) {
+    background-color: #bcbcf7b6;
+}
+
+li:hover {
+    background-color: #dddddd
+}
+
+li {
+    list-style-type: none;
+}
+
+.template
+{
+    display: none;
+}
+
+
+#listItemTemplate .button {
+    margin: 0 0 0 0;
+    padding: 0.5rem 0.1rem;
+    background: none;
+
+}
+
+#listItemTemplate #favStar {
+    display: none;
+}
+
+#controlsForListItem
+{
+    visibility: hidden;
+    margin-right: 1rem;
+}
+
+#entryListHeader
+{
+    font-size: 1.5rem;
+}
+
+#mainSpaceDiv
+{
+    height: 3rem;
+}
+
+.button
+{
+    margin: 0 0 0 0;
+}
+
+#listItemTemplate
+{
+    max-height: 50px;
+    transition: max-height 250ms;
+}

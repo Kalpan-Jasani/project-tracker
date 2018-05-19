@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Android project tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css"/>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <h1>
+        Android project tracker
+    </h1>
+    <form id="entryForm">
+        <fieldset class="fieldset">
+            <legend>Entry</legend>
+            <label for="Name">Name: </label>
+            <input 
+                type="text"
+                name="name"
+                required
+                autofocus
+                placeholder="Project name"
+            >
+            <label for="version">Version: </label>
+            <input type="text" name="version" placeholder="Project version">
+            <label for="android_version">Android version: </label>
+            <input
+                type="text"
+                name="android_version"
+                placeholder="Min. target Android version"
+            >
+            <label for="domain">Company domain: </label>
+            <input type="text" name="domain" placeholder="Company domain ">
+            <label for="link">Project link: </label>
+            <input type="url" name="link" placeholder="Project website">
+            <button type="submit" class="button success">Add to list</button>
+        </fieldset>
+    </form>
+    <br>
+    <div id="mainSpaceDiv"></div>
+    <div id="entryListHeader">
+        Entries
+    </div>
+    <div id="entries">
+        <ol id="entryList"></ol>
+    </div>
+    <ul class="template">
+        <li id="listItemTemplate" class="template">
+            <div class="grid-x">
+                <span contenteditable="true" class="cell auto" id="detail">Some long version inclusive text with android version and domain and link and other stuff</span>
+                <span class="cell shrink" id="controlsForListItem">
+                    
+                    <button type="button" class="button" id="favButton">
+                            <img id="favStar" src="yellow-star.png" height="20px" width="20px"></img>
+                            <img id="favStarOutline" src="yellow-star-outline.png" height="20px" width="20px"></img>
+                    </button>
+                    <button type="button" class="button" id="delButton">
+                            <img id="delImg" src="dustbin.png" height="20px" width="20px"></img>
+
+                    </button>
+                </span>
+            </div>
+        </li>
+    </ul>
+    <script src="index.js"></script>
+</body>
+</html>
