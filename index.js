@@ -28,16 +28,38 @@ const project =
     //event listener for submit event on the form
     onSubmit: function(ev)
     {
+        //prevent the submit event from performing its default
         ev.preventDefault();
+
+        //make a new entry for the array
         const entry = new Entry(entryForm.name.value, entryForm.version.value, entryForm.android_version.value, entryForm.domain.value, entryForm.link.value, ++this.idGenerator);
         
+        //insert the entry to the begining of the array
         this.entries.unshift(entry);
         
+        //clone a entry listhtml item from a template
         const listItem = this.listItemTemplate.cloneNode(true);
         
         listItem.classList.remove("template");
         listItem.dataset.id = this.idGenerator;
 
+        const deleteButton = listItem.querySelector("#delButton");
+        const favButton = listItem.querySelector("#favButton");
+        const upButton = listItem.querySelector("#upButton");
+        const downButton = listItem.querySelector("#downButton");
+
+        upButton.disabled = true;
+
+        // if it is the only one, then it is also the last item in the html list. We then set the down button to disabled. This will ofcourse happen the first time
+        //important: if we do this, which happens the first time, the initial "state" of the html list if made. Then we don't have to check for last items down button on new additions
+        if(this.entries.length === 1)
+        {
+            downButton.disabled = true;
+        }
+        else
+        {
+            this.entryListHTML.firstChild.querySelector("#upButton").disabled = false;
+        }
         //allowing hover listening for each list row (for outlook like controls!)
         listItem.addEventListener("mouseover", () => 
             {
@@ -77,10 +99,6 @@ const project =
         else
             this.entryListHTML.insertBefore(listItem, this.entryListHTML.firstChild);
     
-        //set listeners for delete button and fav button
-        const deleteButton = listItem.querySelector("#delButton");
-        const favButton = listItem.querySelector("#favButton");
-
         deleteButton.addEventListener('click', (ev) => 
             {
                 listItem.style.maxHeight = "0";
@@ -88,7 +106,6 @@ const project =
                     listItem.remove();
                 }, 250);
 
-            
                 this.onDelete(entry.id);
             }
         );
@@ -108,6 +125,18 @@ const project =
                     starImgOutlineHTML.style.display = "inline-block";
                 }
                 this.onFavouriteSelected(entry.id);
+            }
+        );
+
+        upButton.addEventListener("click", (ev) =>
+            {
+                this.swap(listItem.previousSibling, listItem);
+            }
+        );
+
+        downButton.addEventListener("click", (ev) =>
+            {
+                this.swap(listItem, listItem.nextSibling);
             }
         );
         this.entryForm.reset();
@@ -175,8 +204,58 @@ const project =
         }
 
         return textSpan;
-    }
-}
+    },
+    swap: function(item1, item2)
+    {
+
+        //getting the indexes of entries using the id's
+        const id1 = item1.dataset.id;
+        const id2 = item2.dataset.id;
+
+        const entry1 = this.getEntryByID(id1);
+        const entry2 = this.getEntryByID(id2);
+
+        const index1 = this.entries.indexOf(entry1);
+        const index2 = this.entries.indexOf(entry2);
+
+        //if item1 is the first list item in the list
+        if(this.entryListHTML.firstChild === item1)
+        {
+            upButton1 = item1.querySelector("#upButton");
+            upButton1.disabled = false;
+            
+            upButton2 = item2.querySelector("#upButton");
+            upButton2.disabled = true;
+        }
+
+        if(this.entryListHTML.lastElementChild === item2)
+        {
+            downButton1 = item1.querySelector("#downButton");
+            downButton2 = item2.querySelector("#downButton");
+
+            downButton1.disabled = true;
+            downButton2.disabled = false;
+        }
+
+        this.entryListHTML.insertBefore(item2, item1);
+        const temp = this.entries[index1];
+        this.entries[index1] = this.entries[index2];
+        this.entries[index2] = temp;
+    },
+
+    //TODO: use this function everywhere (in delete and fav, etc)
+    getEntryByID: function(id)
+    {
+        const entry = this.entries.find((entry) => 
+            {
+                if(entry.id == id)
+                    return true;
+            }
+        );
+
+        return entry;
+    },
+};
 
 //initialize the class to start listening after set up
 project.init();
