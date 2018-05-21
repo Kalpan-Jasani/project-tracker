@@ -35,7 +35,7 @@
             <input type="text" name="domain" placeholder="Company domain ">
             <label for="link">Project link: </label>
             <input type="url" name="link" placeholder="Project website">
-            <button type="submit" class="button success">Add to list</button>
+            <button id="submitButton" type="submit" class="button success">Add to list</button>
         </fieldset>
     </form>
     <br>
@@ -49,12 +49,21 @@
     <ul class="template">
         <li id="listItemTemplate" class="template">
             <div class="grid-x">
-                <span contenteditable="true" class="cell auto" id="detail">Some long version inclusive text with android version and domain and link and other stuff</span>
+                <span class="cell auto" id="detail">Some long version inclusive text with android version and domain and link and other stuff</span>
                 <span class="cell shrink" id="controlsForListItem">
-                    
+                    <button type="button" class="button" id="editButton">
+                        <img src="edit-icon.png" height="20px" width="20px"></img>
+                        <span id="okText">Ok</span>
+                    </button>
+                    <button type="button" class="button" id="upButton">
+                        <img src="up-icon.png" height="20px" width="20px"></img>
+                    </button>
+                    <button type="button" class="button" id="downButton">
+                        <img src="down-icon.png" height="20px" width="20px"></img>
+                    </button>
                     <button type="button" class="button" id="favButton">
-                            <img id="favStar" src="yellow-star.png" height="20px" width="20px"></img>
-                            <img id="favStarOutline" src="yellow-star-outline.png" height="20px" width="20px"></img>
+                        <img id="favStar" src="yellow-star.png" height="20px" width="20px"></img>
+                        <img id="favStarOutline" src="yellow-star-outline.png" height="20px" width="20px"></img>
                     </button>
                     <button type="button" class="button" id="delButton">
                             <img id="delImg" src="dustbin.png" height="20px" width="20px"></img>
